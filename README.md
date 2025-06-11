@@ -63,8 +63,5 @@ Run the script to train the model, make recommendations, and evaluate performanc
 For example: ```python recommendation_script.py input_data.csv 5 0.8```
 
 
-## Contributing
-Feel free to contribute by opening issues, proposing new features, or submitting pull requests.
-
 
 
