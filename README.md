@@ -17,6 +17,16 @@ Built with `pandas`, `NumPy`, and `scikit-learn`, this tool predicts movie ratin
     - [Metrics Calculation](#metrics-calculation)
 5. [Results](#results)
 
+##  Features
+
+- Reads ratings from CSV file (e.g., `ratings.csv` from [MovieLens](https://grouplens.org/datasets/movielens/))
+- Filters out low-activity users and movies for better quality
+- Supports three prediction modes:
+  - **Simple average** of similar item ratings
+  - **Similarity-weighted average**
+  - **User-count-weighted similarity**
+- Calculates **MAE**, **Precision**, and **Recall** for evaluation
+- Efficient computation using pandas + correlation matrices
 ## Requirements
 Ensure you have the following Python libraries installed:
 
