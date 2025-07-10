@@ -1,9 +1,4 @@
-Ορίστε η διορθωμένη και ελαφρώς βελτιστοποιημένη έκδοση του `README.md`, διατηρώντας τον σοβαρό τόνο και ενσωματώνοντας τις απαραίτητες βελτιώσεις σε γραμματική, δομή και συνέπεια:
-
----
-
-````markdown
-# 🎬 Movie Recommendation System Overview
+# Movie Recommendation System Overview
 
 ## Introduction
 
@@ -28,45 +23,39 @@ Collaborative filtering is a technique commonly used in recommendation systems, 
     - [Metrics Calculation](#metrics-calculation)  
 6. [Usage](#usage)  
 7. [Results](#results)  
-8. [Notes](#notes)  
+8. [Notes](#notes)
 
 ---
 
-## Features
+##  Features
 
 - Reads ratings from CSV file (e.g., `ratings.csv` from [MovieLens](https://grouplens.org/datasets/movielens/))
-- Filters out low-activity users and movies for better recommendation quality
+- Filters out low-activity users and movies for better quality
 - Supports three prediction modes:
-  - **Simple average** of similar item ratings  
-  - **Similarity-weighted average**  
+  - **Simple average** of similar item ratings
+  - **Similarity-weighted average**
   - **User-count-weighted similarity**
 - Calculates **MAE**, **Precision**, and **Recall** for evaluation
-- Efficient computation using correlation matrices and vectorized operations
+- Efficient computation using pandas + correlation matrices
 
 ---
 
 ## Requirements
 
-Ensure the following Python libraries are installed:
+Ensure you have the following Python libraries installed:
 
-- `numpy` – for numerical operations  
-- `pandas` – for data manipulation and processing  
-- `scikit-learn` – for model evaluation utilities  
-- `scipy` – for scientific computing (optional, depending on environment)
-
-Install dependencies using:
-
-```bash
-pip install numpy pandas scikit-learn
-````
+- `numpy`: For numerical operations.
+- `pandas`: For data manipulation and analysis.
+- `scikit-learn`: For machine learning tools.
+- `scipy`: For scientific computing functions.
 
 ---
 
 ## Getting Started
 
 1. Clone the repository to your local machine.
-2. Ensure the required dependencies are installed.
-3. Run the main script as shown below to execute the recommender system.
+2. Install the required dependencies.
+3. Run the main script to see the recommendation system in action.
 
 ---
 
@@ -78,108 +67,54 @@ The recommendation system expects a ratings dataset in CSV format containing:
 | ------ | ------- | ------ |
 | 1      | 31      | 4.0    |
 
-For this project, the [MovieLens dataset](https://grouplens.org/datasets/movielens/latest/) was used.
-Only movies and users with at least **5 ratings** are retained for better model reliability.
+For this project, the MovieLens dataset was used.( https://grouplens.org/datasets/movielens/latest/)
+Only movies and users with at least 5 ratings are retained for better model reliability.
 
 ---
 
 ## Implementation Details
 
 ### Data Initialization
-
-The system reads the ratings file, filters out sparse users and movies, computes the Pearson similarity matrix, and splits the dataset into training and testing subsets.
+The `data_init` function reads the movie ratings data, applies preprocessing, and splits it into training and testing sets.
 
 ### Similarity Matrix Calculation
+The `calculate_simMatrix` function computes the similarity matrix, allowing the user to choose between Jaccard or adjusted cosine similarity.
 
-Pearson correlation is used to calculate similarities between items, with a minimum threshold of co-rated users. The matrix is cleaned from zero-correlation entries.
+### Item-Item Collaborative Filtering (S1)
+The `S1` function performs item-item collaborative filtering. It filters out movies with low predicted ratings, enhancing the relevance of recommendations.
 
-### Item-Item Collaborative Filtering (Mode 1)
-
-Predictions are made by computing the **simple average** of ratings from the k most similar items that a user has rated.
-
-### Weighted Prediction (Mode 2)
-
-The second mode uses **similarity-weighted averages**, giving more weight to closer (higher similarity) items.
-
-### User-Count Weighted Prediction (Mode 3)
-
-This hybrid approach weighs similarities by the **number of users** that rated both items — improving robustness in sparse data situations.
+### User-Item Collaborative Filtering (S2)
+The `S2` function combines the filtered results from item-item collaborative filtering with user-item collaborative filtering.
 
 ### Metrics Calculation
-
-Three metrics are computed:
-
-* **MAE** (Mean Absolute Error)
-* **Precision** (on binary threshold: rating ≥ 3)
-* **Recall**
+The `calculateMetrics` function evaluates the recommendation system's performance using metrics such as Mean Absolute Error (MAE), Precision, and Recall.
 
 ---
 
 ## Usage
+Run the script to train the model, make recommendations, and evaluate performance.The expected command to run the script is as follows:
+```python script_name.py <source> <path> <neighbors> <train-percentage>```
 
-Run the script from the command line:
+   * **source:** Placeholder for the script source file.
+   * **path:** Placeholder for the path to the input data file.
+   * **neighbors:** Number of neighbors for similarity calculation.
+   * **train-percentage:** Percentage of the dataset to be used for training.
+     
+For example: ```python recommendation_script.py input_data.csv 5 0.8```
 
-```bash
-python recommendation_script.py <path> <neighbors> <train-percentage>
-```
-
-### Parameters
-
-* `<path>`: Path to the `ratings.csv` dataset
-* `<neighbors>`: Number of similar items (`k`) to use for predictions
-* `<train-percentage>`: Fraction of data to be used for training (e.g., `0.8` for 80%)
-
-### Example
-
-```bash
-python recommendation_script.py ratings.csv 10 0.9
-```
-
----
-
-## Results
-
-Sample console output:
-
-```
-Neighbors: 10
-Train split percentage: 0.9
-
-Calculating prediction function 1
-MAE: 0.732
-Precision: 0.801
-Recall: 0.844
-Duration: 0:00:41.320000
-```
-
-Each mode is evaluated separately and prints its corresponding metrics and duration.
-
----
+.
 
 ## Notes
+* Only users and movies with ≥ 5 ratings are retained
 
-* Only users and movies with **≥ 5 ratings** are included
 * Pearson correlation is used for item similarity
-* Ratings are thresholded to binary values (≥3 as positive) for precision/recall
-* For meaningful results, use a dataset with sufficient density
 
----
+* Ratings are thresholded to binary values (≥3 as positive) for precision/recall 
 
-## License
+* For meaningful results, use a dataset with enough density
 
-This project is open source and free to use under the MIT License.
 
----
 
-## Author
 
-**P-nox** – Software Developer
-Focus: Full-stack engineering and intelligent systems
-📍 Based in Greece
 
-```
-
---- 
-
-Είναι έτοιμο για χρήση ως `README.md` στο GitHub repo. Αν θες, μπορώ να σου το ετοιμάσω και ως αρχείο `.md`. Θέλεις να συνδέσουμε αυτό το project με άλλα που έχεις (π.χ. DES-ECB-Encryption, Freecell Solver) με ένα section "See Also" ή "Related Projects";
-```
+κανε τις απαραιτητες διορθωσεις
