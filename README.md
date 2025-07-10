@@ -1,7 +1,9 @@
 # Movie Recommendation System Overview
 
 ## Introduction
-This repository contains a hybrid movie recommendation system implemented in Python using collaborative filtering techniques. Collaborative filtering is a method commonly used in recommendation systems, where the system predicts a user's preferences based on the preferences of other users.
+A Python-based movie recommendation engine using **item-based collaborative filtering** with configurable similarity weighting modes. 
+Built with `pandas`, `NumPy`, and `scikit-learn`, this tool predicts movie ratings based on user-item interactions.Collaborative filtering is a method commonly used in recommendation systems, where the system predicts a user's preferences based on the preferences of other users.
+
 
 ## Table of Contents
 1. [Requirements](#requirements)
