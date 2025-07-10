@@ -64,6 +64,17 @@ Run the script to train the model, make recommendations, and evaluate performanc
      
 For example: ```python recommendation_script.py input_data.csv 5 0.8```
 
+.
+
+## Notes
+* Only users and movies with ≥ 5 ratings are retained
+
+* Pearson correlation is used for item similarity
+
+* For meaningful results, use a dataset with enough density
+
+
+
 
 
 
