@@ -74,19 +74,19 @@ Only movies and users with at least 5 ratings are retained for better model reli
 
 ## Implementation Details
 
-### * Data Initialization
+### - Data Initialization
 The `data_init` function reads the movie ratings data, applies preprocessing, and splits it into training and testing sets.
 
-### * Similarity Matrix Calculation
+### - Similarity Matrix Calculation
 The `calculate_simMatrix` function computes the similarity matrix, allowing the user to choose between Jaccard or adjusted cosine similarity.
 
-### * Item-Item Collaborative Filtering (S1)
+### - Item-Item Collaborative Filtering (S1)
 The `S1` function performs item-item collaborative filtering. It filters out movies with low predicted ratings, enhancing the relevance of recommendations.
 
-### * User-Item Collaborative Filtering (S2)
+### - User-Item Collaborative Filtering (S2)
 The `S2` function combines the filtered results from item-item collaborative filtering with user-item collaborative filtering.
 
-### * Metrics Calculation
+### - Metrics Calculation
 The `calculateMetrics` function evaluates the recommendation system's performance using metrics such as Mean Absolute Error (MAE), Precision, and Recall.
 
 ---
